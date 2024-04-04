@@ -9,10 +9,10 @@ const Home = () => {
         <div>
             <Header/>
             <Nav/>
-            <div className="grid grid-cols-1 lg:grid-cols-4 text-center my-5">
-                <div><RightSide/></div>
-                <div className="lg:col-span-2">News Loading...</div>
+            <div className="grid grid-cols-1 lg:grid-cols-4 my-5">
                 <div><LeftSide/></div>
+                <div className="lg:col-span-2">News Loading...</div>
+                <div><RightSide/></div>
             </div>
         </div>
     );
