@@ -18,22 +18,32 @@ const Nav = () => {
         </NavLink>
       </li>
       <li>
-        <NavLink className={({ isActive, isPending }) =>
+        <NavLink
+          className={({ isActive, isPending }) =>
             isPending
               ? "pending"
               : isActive
               ? "bg-black no-underline p-2 text-white hover:bg-black"
               : "no-underline"
-          } to={"/about"}>About</NavLink>
+          }
+          to={"/login"}
+        >
+          Login
+        </NavLink>
       </li>
       <li>
-        <NavLink className={({ isActive, isPending }) =>
+        <NavLink
+          className={({ isActive, isPending }) =>
             isPending
               ? "pending"
               : isActive
               ? "bg-black no-underline p-2 text-white hover:bg-black"
               : "no-underline"
-          } to={"/career"}>Career</NavLink>
+          }
+          to={"/register"}
+        >
+          Register
+        </NavLink>
       </li>
     </>
   );
@@ -70,7 +80,12 @@ const Nav = () => {
         <ul className="menu menu-horizontal px-1">{navLinks}</ul>
       </div>
       <div className="navbar-end">
-        <Link to={'/login'} className="bg-black no-underline px-3 py-2 transition-all duration-300 text-white hover:bg-[#232323]">Login</Link>
+        <Link
+          to={"/login"}
+          className="bg-black no-underline px-3 py-2 transition-all duration-300 text-white hover:bg-[#232323]"
+        >
+          Login
+        </Link>
       </div>
     </div>
   );

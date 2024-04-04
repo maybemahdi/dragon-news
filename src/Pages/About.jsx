@@ -7,7 +7,7 @@ const About = () => {
         <div>
             <Header/>
             <Nav/>
-            about
+            About
         </div>
     );
 };

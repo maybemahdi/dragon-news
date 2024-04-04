@@ -6,7 +6,7 @@ const Header = () => {
   return (
     <div>
       <div className="flex flex-col items-center justify-center mt-10">
-        <img src={logo} alt="" />
+        <img className="w-[200px] md:w-fit" src={logo} alt="" />
         <p className="m-2">Journalism Without Fear or Favour</p>
         <p className="m-0">{moment().format("dddd, MMMM D, YYYY")}</p>
       </div>
