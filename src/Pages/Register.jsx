@@ -3,6 +3,7 @@ import { FaRegEye, FaRegEyeSlash } from "react-icons/fa";
 import { Link, useNavigate } from "react-router-dom";
 import Nav from "../Shared/Nav";
 import { AuthContext } from "../AuthProvider/AuthProvider";
+import toast from 'react-hot-toast';
 
 const Register = () => {
   const { createUser } = useContext(AuthContext);
@@ -19,7 +20,7 @@ const Register = () => {
     createUser(email, password)
       .then((res) => {
         console.log(res.user);
-        alert("Account created successfully");
+        toast.success("Account created successfully");
         navigate("/");
       })
       .catch((err) => console.log(err));
@@ -34,14 +35,14 @@ const Register = () => {
             <form onSubmit={handleSubmit}>
               <input
                 type="text"
-                className="block border border-grey-light w-[93%] lg:w-[93.5%] p-3 rounded mb-4"
+                className="block border border-grey-light w-full p-3 rounded mb-4"
                 name="name"
                 placeholder="Full Name"
                 required
               />
               <input
                 type="email"
-                className="block border border-grey-light w-[93%] lg:w-[93.5%] p-3 rounded mb-4"
+                className="block border border-grey-light w-full p-3 rounded mb-4"
                 name="email"
                 placeholder="Email"
                 required

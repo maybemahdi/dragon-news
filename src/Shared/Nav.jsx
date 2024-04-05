@@ -1,6 +1,11 @@
+import { useContext } from "react";
 import { Link, NavLink } from "react-router-dom";
+import { AuthContext } from "../AuthProvider/AuthProvider";
+import { FaUserCircle } from "react-icons/fa";
+import toast from "react-hot-toast";
 
 const Nav = () => {
+  const { user, logOut } = useContext(AuthContext);
   const navLinks = (
     <>
       <li>
@@ -47,14 +52,23 @@ const Nav = () => {
       </li>
     </>
   );
+  const handleLogOut = () => {
+    logOut()
+      .then(() => toast.success("Logged Out Successfully"))
+      .catch((err) => console.log(err));
+  };
   return (
     <div className="navbar bg-base-100">
       <div className="navbar-start">
         <div className="dropdown">
-          <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
+          <div
+            tabIndex={0}
+            role="button"
+            className="btn -ml-8 btn-ghost lg:hidden"
+          >
             <svg
               xmlns="http://www.w3.org/2000/svg"
-              className="h-5 w-5"
+              className="h-6 w-6"
               fill="none"
               viewBox="0 0 24 24"
               stroke="currentColor"
@@ -69,7 +83,7 @@ const Nav = () => {
           </div>
           <ul
             tabIndex={0}
-            className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52"
+            className="menu menu-md dropdown-content -ml-8 mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-40"
           >
             {navLinks}
           </ul>
@@ -79,13 +93,24 @@ const Nav = () => {
       <div className="navbar-center hidden lg:flex">
         <ul className="menu menu-horizontal px-1">{navLinks}</ul>
       </div>
-      <div className="navbar-end">
-        <Link
-          to={"/login"}
-          className="bg-black no-underline px-3 py-2 transition-all duration-300 text-white hover:bg-[#232323]"
-        >
-          Login
-        </Link>
+      <div className="navbar-end gap-4">
+        {user?.photoURL ? (
+          <img src={user.photoURL} alt="" />
+        ) : (
+          <FaUserCircle size={45} />
+        )}
+        {user ? (
+          <button onClick={handleLogOut} className="bg-black no-underline px-3 py-3 cursor-pointer transition-all duration-300 text-white border-0 hover:bg-[#232323]">
+            Log Out
+          </button>
+        ) : (
+          <Link
+            to={"/login"}
+            className="bg-black no-underline px-3 py-2 cursor-pointer transition-all duration-300 text-white hover:bg-[#232323]"
+          >
+            Login
+          </Link>
+        )}
       </div>
     </div>
   );

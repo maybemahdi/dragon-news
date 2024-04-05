@@ -1,10 +1,11 @@
 import { useContext, useState, useRef } from "react";
 import { AuthContext } from "../AuthProvider/AuthProvider";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { FaRegEye, FaRegEyeSlash } from "react-icons/fa"; // Import Eye icons
 import { auth } from "../firebase/firebase.config";
 import { sendPasswordResetEmail } from "firebase/auth";
 import Nav from "../Shared/Nav";
+import toast from "react-hot-toast";
 
 const Login = () => {
   const { signIn } = useContext(AuthContext);
@@ -12,6 +13,7 @@ const Login = () => {
   const [forgetError, setForgetError] = useState("");
   const [successForget, setSuccessForget] = useState("");
   const emailRef = useRef(); // Add useRef for email input
+  const navigate = useNavigate();
 
   const handleForgetPassword = () => {
     const email = emailRef.current.value;
@@ -31,6 +33,7 @@ const Login = () => {
       .then(() => {
         setForgetError("");
         setSuccessForget(`A password reset email was sent to: ${email}`);
+        toast.success(`A password reset email was sent to: ${email}`);
       })
       .catch((err) => setForgetError(err));
   };
@@ -41,8 +44,9 @@ const Login = () => {
     const password = e.target.password.value;
     signIn(email, password)
       .then((res) => {
-        console.log(res.user)
-        alert('Logged in successfully')
+        console.log(res.user);
+        toast.success("Logged in successfully");
+        navigate("/");
       })
       .catch((err) => console.log(err));
   };
@@ -58,7 +62,7 @@ const Login = () => {
               <input
                 type="email"
                 ref={emailRef}
-                className="block border border-grey-light w-[93%] p-3 rounded mb-4"
+                className="block border border-grey-light w-full p-3 rounded mb-4"
                 name="email"
                 placeholder="Email"
                 required

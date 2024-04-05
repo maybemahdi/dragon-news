@@ -13,7 +13,7 @@ const LeftSide = () => {
   }, []);
   return (
     <div>
-      <h3>All Categories</h3>
+      <h3 className="mb-4">All Categories</h3>
       <div className="flex flex-col gap-2 item-center">
         {categories.map((category) => (
           <Link
