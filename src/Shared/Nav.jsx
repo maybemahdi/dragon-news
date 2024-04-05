@@ -15,7 +15,7 @@ const Nav = () => {
               ? "pending"
               : isActive
               ? "bg-black no-underline p-2 text-white hover:bg-black"
-              : "no-underline"
+              : "no-underline text-black"
           }
           to={"/"}
         >
@@ -29,7 +29,7 @@ const Nav = () => {
               ? "pending"
               : isActive
               ? "bg-black no-underline p-2 text-white hover:bg-black"
-              : "no-underline"
+              : "no-underline text-black"
           }
           to={"/login"}
         >
@@ -43,7 +43,7 @@ const Nav = () => {
               ? "pending"
               : isActive
               ? "bg-black no-underline p-2 text-white hover:bg-black"
-              : "no-underline"
+              : "no-underline text-black"
           }
           to={"/register"}
         >
