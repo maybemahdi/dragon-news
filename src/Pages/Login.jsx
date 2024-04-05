@@ -1,6 +1,6 @@
 import { useContext, useState, useRef } from "react";
 import { AuthContext } from "../AuthProvider/AuthProvider";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 import { FaRegEye, FaRegEyeSlash } from "react-icons/fa"; // Import Eye icons
 import { auth } from "../firebase/firebase.config";
 import { sendPasswordResetEmail } from "firebase/auth";
@@ -14,6 +14,7 @@ const Login = () => {
   const [successForget, setSuccessForget] = useState("");
   const emailRef = useRef(); // Add useRef for email input
   const navigate = useNavigate();
+  const location = useLocation();
 
   const handleForgetPassword = () => {
     const email = emailRef.current.value;
@@ -46,7 +47,7 @@ const Login = () => {
       .then((res) => {
         console.log(res.user);
         toast.success("Logged in successfully");
-        navigate("/");
+        navigate(location.state? location.state : "/");
       })
       .catch((err) => console.log(err));
   };
