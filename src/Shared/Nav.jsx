@@ -95,7 +95,7 @@ const Nav = () => {
       </div>
       <div className="navbar-end gap-4">
         {user?.photoURL ? (
-          <img src={user.photoURL} alt="" />
+          <img className="w-10 rounded-full" src={user.photoURL} alt="" />
         ) : (
           <FaUserCircle size={45} />
         )}

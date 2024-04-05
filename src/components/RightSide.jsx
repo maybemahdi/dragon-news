@@ -5,20 +5,46 @@ import qZone3 from "../assets/qZone3.png";
 import "./shared.css";
 import { FaFacebook, FaGoogle, FaInstagram, FaTwitter } from "react-icons/fa";
 import { ImGithub } from "react-icons/im";
+import { useContext } from "react";
+import { AuthContext } from "../AuthProvider/AuthProvider";
+import toast from "react-hot-toast";
 
 const RightSide = () => {
+  const { googleLogin, githubLogin } = useContext(AuthContext);
+  const handleGoogleLogin = () => {
+    googleLogin()
+      .then((res) => {
+        console.log(res.user);
+        toast.success("Signed in Successfully");
+      })
+      .catch((err) => console.log(err));
+  };
+  const handleGithubLogin = () => {
+    githubLogin()
+      .then((res) => {
+        console.log(res.user);
+        toast.success("Signed in Successfully");
+      })
+      .catch((err) => console.log(err));
+  };
   return (
     <div className="w-full">
       <div className="mb-6">
         <h3 className="mb-4">Login With</h3>
         <Link>
-          <button className="btn w-full mb-2 btn-outline">
+          <button
+            onClick={handleGoogleLogin}
+            className="btn w-full mb-2 btn-outline"
+          >
             <FaGoogle />
             Log in with Google
           </button>
         </Link>
         <Link>
-          <button className="btn w-full btn-outline text-black">
+          <button
+            onClick={handleGithubLogin}
+            className="btn w-full btn-outline text-black"
+          >
             <ImGithub />
             Log in with Github
           </button>
